@@ -19,7 +19,7 @@ class sma_strategy(Strategy):
         self.atr=self.I(get_atr,self.data.High.s,self.data.Low.s,self.data.Close.s,self.atr_length)
 
     def next(self):
-
+# -1 means the latest candle and -2 means the previous candle
         if (self.sma1[-1]<self.sma2[-1]) & (self.sma1[-2]>self.sma2[-2]):
             if self.position.is_short:
                 self.position.close()
@@ -27,7 +27,7 @@ class sma_strategy(Strategy):
         elif (self.sma1[-1]>self.sma2[-1]) & (self.sma1[-2]<self.sma2[-2]):
             if self.position.is_long:
                 self.position.close()
-            # self.sell()
+            self.sell()
 
 
 
